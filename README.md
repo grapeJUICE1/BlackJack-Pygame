@@ -23,3 +23,9 @@ pip install pygame
 More info at https://www.pygame.org/wiki/GettingStarted
 
 ## Screenshots
+
+![One](https://github.com/grapeJUICE1/BlackJack-Pygame/blob/main/Screenshots/one.png?raw=true)
+
+![Two](https://github.com/grapeJUICE1/BlackJack-Pygame/blob/main/Screenshots/two.png?raw=true)
+
+![Three](https://github.com/grapeJUICE1/BlackJack-Pygame/blob/main/Screenshots/three.png?raw=true)
