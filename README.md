@@ -1,5 +1,5 @@
 <h1 align="center">
-  Fruit Frowns
+  Blackjack
 </h1>
 
 ## About
