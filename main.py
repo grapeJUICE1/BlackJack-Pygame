@@ -1,5 +1,5 @@
 #########################################
-#  Blackjack GUI Python   |                 #
+#  Blackjack GUI Python   |             #
 #########################################
 import random
 import sys
@@ -256,7 +256,7 @@ class Game:
 
                 elif card.landed == False:
                     card.landed = True
-                    if self.current_game_state == GameStates.players_turn:
+                    if self.current_game_state == GameStates.dealers_turn:
                         card.set_hide(False)
                     if self.cards_landing == True:
                         self.cards_landing = False
@@ -330,6 +330,12 @@ class Game:
             self.current_game_state = GameStates.round_ends
             self.check_round_results()
             self.disable_hittin_and_staying_input = True
+    def on_game_state_round_ends(self):
+        self.bet_input_box.set_active(False)
+        if self.cards_landing == False:
+            self.hide_unhide_cards(self.player , False)
+            self.hide_unhide_cards(self.dealer , False)
+        self.disable_hittin_and_staying_input=True
 
     def blit_text(self):
         if self.cards_landing == False:
@@ -400,8 +406,7 @@ class Game:
                 self.on_game_state_dealers_turn()
 
             elif self.current_game_state == GameStates.round_ends:
-                self.bet_input_box.set_active(False)
-                self.disable_hittin_and_staying_input=True
+                self.on_game_state_round_ends()
 
 
             Game.draw_back_cards(self.player , "Player")
