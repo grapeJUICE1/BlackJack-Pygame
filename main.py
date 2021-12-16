@@ -51,6 +51,7 @@ class Deck:
         self.cards = []
 
     def create_deck(self):
+        self.cards = []
         suits = ['diamonds', 'clubs', 'spades', 'hearts']
         royal_flush = ['king' , 'queen' , 'jack' , 'ace']
         for i in range(2, 11):
@@ -86,6 +87,9 @@ class PossibleOutcomes:
     lost = "lost"
     tie = "tie"
 
+deck = Deck()
+deck.create_deck()
+
 # Game Class
 class Game:
     def __init__(self):
@@ -98,8 +102,6 @@ class Game:
 
         self.player_score = 0
         self.dealer_score = 0
-
-        self.cards = []
 
         self.player_cards_revealed = False
 
@@ -131,7 +133,6 @@ class Game:
         self.dealer = []
         self.player_score = 0
         self.dealer_score = 0
-        self.cards = []
 
         self.player_cards_revealed = False
 
@@ -162,8 +163,8 @@ class Game:
     def pass_cards(self, to=None, times=1):
         # pass cards to player and user
         for i in range(times):
-            index = random.randint(0, len(self.cards) - 1)
-            card = self.cards[index]
+            index = random.randint(0, len(deck.cards) - 1)
+            card = deck.cards[index]
 
             if to == 'dealer':
                 self.dealer.append(card)
@@ -186,13 +187,12 @@ class Game:
 
 
             self.player_score = sum(list(map(lambda x: x.value, self.player)))
-            self.cards.pop(index)
+            deck.cards.pop(index)
 
 
     def create_cards(self):
-        deck = Deck()
-        self.cards = deck.create_deck()
-        random.shuffle(self.cards)
+        deck.create_deck()
+        random.shuffle(deck.cards)
         self.player = []
         self.dealer = []
         self.player_score = 0
