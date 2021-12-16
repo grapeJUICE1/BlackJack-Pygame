@@ -7,9 +7,6 @@ import os
 import pygame
 from input_box import InputBox
 
-from tkinter import *
-from tkinter import messagebox
-Tk().wm_withdraw() #to hide the main window
 
 # Setting Up Pygame
 pygame.init()
@@ -270,16 +267,14 @@ class Game:
         if self.budget <= 0:
             sys.exit()
 
-
         self.create_cards()
         self.pass_cards(times=2)
         self.pass_cards('dealer', 2)
-
+        self.bottom_text=""
         self.current_game_state = GameStates.place_your_bet
 
     def on_game_state_place_your_bet(self):
         self.middle_text = "Place Your Bet"
-        self.bottom_text=""
         self.bet_input_box.set_active(True)
         if self.bet_input_box.final_content:
             unchecked_bet = int(self.bet_input_box.final_content)
@@ -288,9 +283,10 @@ class Game:
                 self.budget -= self.currentBet
                 self.bet_input_box.set_final_content("")
                 self.bet_input_box.set_active(False)
+                self.bottom_text = ""
                 self.current_game_state = GameStates.players_turn
             else:
-                messagebox.showinfo('Warning', 'Your Bet Cant Be Bigger Than Your Budget')
+                self.bottom_text = "Bet Can't be Bigger than budget"
                 self.bet_input_box.set_final_content("")
 
     def on_game_state_players_turn(self):
